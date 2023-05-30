@@ -1,3 +1,4 @@
+import 'package:cloud_files/pages/project.dart';
 import 'package:flutter/material.dart';
 
 class TeamFolderPage extends StatefulWidget {
@@ -257,36 +258,48 @@ class _TeamFolderPageState extends State<TeamFolderPage> {
     );
   }
 
-  Container buildProjectsList(String folderName) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      decoration: BoxDecoration(
-          color: Colors.grey.shade200, borderRadius: BorderRadius.circular(15)),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                const Icon(
-                  Icons.folder,
-                  color: Colors.blue,
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  folderName,
-                  style: TextStyle(fontSize: 18, color: Colors.black),
-                )
-              ],
+  Widget buildProjectsList(String folderName) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (BuildContext context) => ProjectPage(
+              folderName: folderName,
             ),
-            const Icon(
-              Icons.more_vert_rounded,
-              color: Colors.grey,
-            )
-          ],
+          ),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        decoration: BoxDecoration(
+            color: Colors.grey.shade200,
+            borderRadius: BorderRadius.circular(15)),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  const Icon(
+                    Icons.folder,
+                    color: Colors.blue,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    folderName,
+                    style: TextStyle(fontSize: 18, color: Colors.black),
+                  )
+                ],
+              ),
+              const Icon(
+                Icons.more_vert_rounded,
+                color: Colors.grey,
+              )
+            ],
+          ),
         ),
       ),
     );
